@@ -22,9 +22,9 @@ int main(int argc, char **argv) {
   double sreflect[3];
 
   // ambient light
-  ambient.red = 50;
-  ambient.green = 50;
-  ambient.blue = 50;
+  ambient.red = 200;
+  ambient.green = 200;
+  ambient.blue = 200;
 
   // one point light source
   light[LOCATION][0] = 0.5;

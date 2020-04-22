@@ -29,7 +29,7 @@ color get_lighting( double *normal, double *view, color alight, double light[2][
   i.green = calculate_ambient(alight, areflect).green + calculate_diffuse(light, dreflect, normal).green + calculate_specular(light, sreflect, view, normal).green;
   i.blue = calculate_ambient(alight, areflect).blue + calculate_diffuse(light, dreflect, normal).blue + calculate_specular(light, sreflect, view, normal).blue;
   limit_color(&i);
-  printf("%d %d %d\n", i.red, i.green, i.blue);
+  // printf("%d %d %d\n", i.red, i.green, i.blue);
   return i;
 }
 

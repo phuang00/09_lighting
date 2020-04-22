@@ -29,7 +29,7 @@ color get_lighting( double *normal, double *view, color alight, double light[2][
   i.green = calculate_ambient(alight, areflect).green + calculate_diffuse(light, dreflect, normal).green + calculate_specular(light, sreflect, view, normal).green;
   i.blue = calculate_ambient(alight, areflect).blue + calculate_diffuse(light, dreflect, normal).blue + calculate_specular(light, sreflect, view, normal).blue;
   limit_color(&i);
-  // printf("%d %d %d\n", i.red, i.green, i.blue);
+  printf("%d %d %d\n", i.red, i.green, i.blue);
   return i;
 }
 
@@ -69,14 +69,14 @@ color calculate_specular(double light[2][3], double *sreflect, double *view, dou
 
 //limit each component of c to a max of 255
 void limit_color( color * c ) {
-  if (c->red >= 512){
-    c->red = 0;
+  if (c->red >= 256){
+    c->red = 255;
   }
-  if (c->green > 512){
-    c->green = 0;
+  if (c->green >= 256){
+    c->green = 255;
   }
-  if (c->blue > 512){
-    c->blue = 0;
+  if (c->blue >= 256){
+    c->blue = 255;
   }
 }
 
@@ -95,7 +95,11 @@ void normalize( double *vector ) {
 
 //Return the dot porduct of a . b
 double dot_product( double *a, double *b ) {
-  return a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+  double ans = a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+  if (ans < 0){
+    ans = 0;
+  }
+  return ans;
 }
 
 double *multiply(double a, double *b){

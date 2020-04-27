@@ -55,14 +55,13 @@ color calculate_diffuse(double light[2][3], double *dreflect, double *normal ) {
 
 color calculate_specular(double light[2][3], double *sreflect, double *view, double *normal ) {
   color s;
-  int n = 5;
   normalize(normal);
   normalize(light[LOCATION]);
   normalize(view);
   double cos_alpha = dot_product(subtract(multiply(2 * dot_product(normal, light[LOCATION]), normal), light[LOCATION]), view);
-  s.red = light[COLOR][RED] * sreflect[RED] * pow(cos_alpha, n);
-  s.green = light[COLOR][GREEN] * sreflect[GREEN] * pow(cos_alpha, n);
-  s.blue = light[COLOR][BLUE] * sreflect[BLUE] * pow(cos_alpha, n);
+  s.red = light[COLOR][RED] * sreflect[RED] * pow(cos_alpha, SPECULAR_EXP);
+  s.green = light[COLOR][GREEN] * sreflect[GREEN] * pow(cos_alpha, SPECULAR_EXP);
+  s.blue = light[COLOR][BLUE] * sreflect[BLUE] * pow(cos_alpha, SPECULAR_EXP);
   limit_color(&s);
   return s;
 }
